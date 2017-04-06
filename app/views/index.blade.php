@@ -30,7 +30,7 @@
 		</div>
 		<div class="info">
 			<p class="title">{{$thumb->title}}</p>
-			<p class="date">{{date('F d, Y', strtotime($thumb->created_at))}}</p>
+			<!--<p class="date">{{date('F d, Y', strtotime($thumb->created_at))}}</p>-->
 		</div>
 	</div>
 </div>

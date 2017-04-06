@@ -4,7 +4,7 @@ class HomeController extends BaseController {
 
 	function getIndex(){
 		$this->getSettings();
-		$this->data['page'] = 0;
+		$this->data['page'] = -1;
 		$this->data['thumbs'] = $this->getThumbs(NULL, $this->data['page']);
 
 		return View::make('index', $this->data);
