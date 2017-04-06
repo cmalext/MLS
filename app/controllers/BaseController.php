@@ -28,9 +28,15 @@ class BaseController extends Controller {
 
 	}
 
-	public function getThumbs(){
+	public function getThumbs($id = NULL, $page = NULL){
 
-		$thumbs = DB::table('thumbs')->get();
+		if($id == NULL)
+			if($page == NULL)
+				$thumbs = DB::table('thumbs')->orderBy('id', 'desc')->get();
+			else
+				$thumbs = DB::table('thumbs')->skip($page * \Config::get('config.per_page'))->take(\Config::get('config.per_page'))->orderBy('id', 'desc')->get();
+		else
+			$thumbs = DB::table('thumbs')->find($id);
 
 		return $thumbs;
 	}

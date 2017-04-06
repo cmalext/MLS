@@ -4,6 +4,7 @@ body{
 	padding:0;
 	margin:0;
 	font-family: 'Open Sans', sans-serif;
+	font-size:13px;
 }
 ul{
 	padding:0;
@@ -17,39 +18,4 @@ a{
 }
 img{
 	max-width:100%;
-}
-.container{
-	margin:0 auto;
-	max-width:1400px;
-}
-.push{
-	position:relative;
-}
-.panel {
-    position: fixed;
-    right: -301px;
-    width: 300px;
-    border-left:1px solid rgba(0,0,0,0.1);
-    background:#fff;
-
-}
-.panel ul{
-	margin:0;
-	padding:0;
-	padding-top:65px;
-}
-.panel ul li{
-	list-style:none;
-	border-bottom:1px solid rgba(0,0,0,0.1);
-	text-transform:uppercase;
-}
-.panel ul li a{
-	padding:15px 20px;
-	font-weight:600;
-	font-size:11px;
-	letter-spacing:1px;
-	display:block;
-}
-.panel ul li:hover a{
-	background:#f2f2f2;
 }

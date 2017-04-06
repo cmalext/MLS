@@ -23,10 +23,9 @@
 </div>
 <nav id="menu" class="panel" role="navigation">
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">The Ballad of El Goodo</a></li>
-        <li><a href="#">Thirteen</a></li>
-        <li><a href="#">September Gurls</a></li>
-        <li><a href="#">What's Going Ahn</a></li>
+        <li><a data-scroll data-options='{ "easing": "easeInOutQuint" }' href="{{$base_url}}/#main">Home</a></li>
+        <li><a data-scroll data-options='{ "easing": "easeInOutQuint" }' href="{{$base_url}}/#art">Artworks</a></li>
+        <li><a data-scroll data-options='{ "easing": "easeInOutQuint" }' href="{{$base_url}}/#about">About me</a></li>
+        <li><a data-scroll data-options='{ "easing": "easeInOutQuint" }' href="{{$base_url}}/#contact">Contact Me</a></li>
     </ul>
 </nav>
