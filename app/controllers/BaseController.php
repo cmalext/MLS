@@ -40,4 +40,19 @@ class BaseController extends Controller {
 
 		return $thumbs;
 	}
+
+	public function fetchThumbs($recache = false){
+		if($recache == false && \Cache::has('thumbs'))
+			return \Cache::get('thumbs');
+		
+		$thumbs = DB::table('thumbs')->orderBy('id', 'desc')->get();
+		Cache::forever('thumbs', $thumbs);
+		return $thumbs;
+	}
+
+	public function paginateThumbs($page){
+		$thumbs = $this->fetchThumbs();
+		$thumbs = array_slice($thumbs, $page, \Config::get('config.per_page'));
+		return $thumbs;
+	}
 }

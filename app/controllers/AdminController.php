@@ -25,7 +25,7 @@ Class AdminController extends BaseController{
 		if(!Session::has('user'))
 			return \Redirect::to(Config::get('config.base_url').'/mls/login');
 		
-		$data['thumbs'] = $this->getThumbs(NULL, NULL);
+		$data['thumbs'] = $this->fetchThumbs();
 
 		return View::make('admin.index',$data);
 	}
@@ -53,6 +53,8 @@ Class AdminController extends BaseController{
 				'title'	=> Input::get('title'),
 				'description'	=> Input::get('description')
 			));
+
+			Cache::forget('thumbs');
 		}
 		return Redirect::to(Config::get('config.base_url').'/mls');
 	}
@@ -63,6 +65,8 @@ Class AdminController extends BaseController{
 			return \Redirect::to(Config::get('config.base_url').'/mls/login');
 
 		DB::table('thumbs')->delete($id);
+
+		Cache::forget('thumbs');
 		
 		return Redirect::to(Config::get('config.base_url').'/mls');
 	}
@@ -84,6 +88,8 @@ Class AdminController extends BaseController{
 
 
 		DB::table('thumbs')->where('id', $id)->update(['title' => Input::get('title'), 'description' => Input::get('description')]);
+		
+		Cache::forget('thumbs');
 
 		return \Redirect::to(Config::get('config.base_url').'/mls/edit/'.$id);
 	}

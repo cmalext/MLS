@@ -3,17 +3,18 @@
 class HomeController extends BaseController {
 
 	function getIndex(){
-		$this->getSettings();
-		$this->data['page'] = -1;
-		$this->data['thumbs'] = $this->getThumbs(NULL, $this->data['page']);
-
+		//$this->getSettings();
+		$this->data['page'] = 0;
+		
+		$this->data['thumbs'] = $this->paginateThumbs($this->data['page']);
 		return View::make('index', $this->data);
 	
 	}
 
 	function getPage(){
 		$this->data['page'] = \Input::has('page') ? \Input::get('page') : 1;
-		$this->data['thumbs'] = $this->getThumbs(NULL, $this->data['page']);
+		$this->data['page'] = $this->data['page'] * \Config::get('config.per_page');
+		$this->data['thumbs'] = $this->paginateThumbs($this->data['page']);
 
 		return View::make('page', $this->data);
 	}
