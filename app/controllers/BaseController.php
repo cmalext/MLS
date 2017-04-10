@@ -10,49 +10,29 @@ class BaseController extends Controller {
 		 View::share ('default_bg', Config::get('config.background'));
 	}
 
-	public function getSettings(){
-
-		if(\Cache::has('settings')){
-
-			$this->data[] = \Cache::get('settings');
-		
-		}else{
-			
-			$settings = DB::table('settings')->get();
-			
-			foreach($settings as $setting)
-				$this->data[$setting->varname] = $setting->value;
-			
-			\Cache::forever('settings', $this->data);
-		}
-
-	}
-
-	public function getThumbs($id = NULL, $page = NULL){
-
-		if($id == NULL)
-			if($page == NULL)
-				$thumbs = DB::table('thumbs')->orderBy('id', 'desc')->get();
-			else
-				$thumbs = DB::table('thumbs')->skip($page * \Config::get('config.per_page'))->take(\Config::get('config.per_page'))->orderBy('id', 'desc')->get();
-		else
-			$thumbs = DB::table('thumbs')->find($id);
-
-		return $thumbs;
-	}
-
-	public function fetchThumbs($recache = false){
-		if($recache == false && \Cache::has('thumbs'))
-			return \Cache::get('thumbs');
+	public function getThumbs($recache = false){
+		if($recache == false && \Cache::has(Config::get('config.cache_key')))
+			return \Cache::get(Config::get('config.cache_key'));
 		
 		$thumbs = DB::table('thumbs')->orderBy('id', 'desc')->get();
-		Cache::forever('thumbs', $thumbs);
+		Cache::forever(Config::get('config.cache_key'), $thumbs);
+		
 		return $thumbs;
 	}
 
 	public function paginateThumbs($page){
-		$thumbs = $this->fetchThumbs();
+		$thumbs = $this->getThumbs();
 		$thumbs = array_slice($thumbs, $page, \Config::get('config.per_page'));
+		
 		return $thumbs;
+	}
+
+	public function getThumb($id){
+		$thumbs = $this->getThumbs();
+
+		foreach($thumbs as $thumb){
+			if($thumb->id == $id)
+				return $thumb;
+		}
 	}
 }

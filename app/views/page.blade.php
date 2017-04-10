@@ -1,9 +1,16 @@
 @if(count($thumbs)>0)
 @foreach($thumbs as $thumb)
+<script>
+$(function(){
+	$(".lazy").lazyload({
+    	effect : "fadeIn"
+    });
+});
+</script>
 <div class="thumb">
 	<div class="inner">
 		<div class="cover">
-			<img src="{{$base_url}}/art/{{$thumb->image}}" alt="{{$thumb->title}}"> 
+			<img data-original="{{$base_url}}/art/{{$thumb->image}}" alt="{{$thumb->title}}" class="lazy"> 
 		</div>
 		<div class="overlay">
 			<div class="innerlay">

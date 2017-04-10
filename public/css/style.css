@@ -150,8 +150,10 @@
 	max-height:250px;
 	overflow:hidden;
 }
-.thumb .iiner .cover img{
-	width:100%;
+.thumb .iiner .cover img,.lazy{
+	width:400px!important;
+	max-width:100%!important;
+	min-height: 274px!important;
 }
 .thumb .inner .overlay{
 	position:absolute;
@@ -469,6 +471,11 @@
 	}
 	.slide h1{
 		font-size:15px;
+	}
+	.thumb .iiner .cover img,.lazy{
+		width:100%!important;
+		max-width:100%!important;
+		min-height: 100%!important;
 	}
 }
 @media screen and (max-width:480px){

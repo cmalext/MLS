@@ -6,6 +6,7 @@ return array(
 	'background'	=> 'wallpaper.png',
 	'per_page'		=> 6,
 	'password'		=> 'masterbabidi',
+	'cache_key'		=> 'thumbs',
 	
 
 );

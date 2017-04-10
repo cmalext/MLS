@@ -16,6 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="{{$base_url}}/js/bigslide.js"></script>
 <script src="{{$base_url}}/js/smoothscroll.js"></script>
+<script src="{{$base_url}}/js/lazyload.js"></script>
 <script src="{{$base_url}}/js/script.js"></script>
 <script>
 	$(document).ready(function() {
@@ -26,6 +27,9 @@
 	    	var id = $(this).attr('data-id');
 	    	displayArt(id);
 	    });
+	    $(".lazy").lazyload({
+       		effect : "fadeIn"
+     	});
 	});
 </script>
 <script>
